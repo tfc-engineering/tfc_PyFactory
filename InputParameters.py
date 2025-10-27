@@ -13,18 +13,17 @@ class ParameterType(enum.IntEnum):
     BLOCK = 6
 
 def ParameterTypeName(type_id: ParameterType) -> str:
-    match type_id:
-        case ParameterType.BOOLEAN:
+    if type_id == ParameterType.BOOLEAN:
             return "ParameterType.BOOLEAN"
-        case ParameterType.INTEGER:
+    if type_id == ParameterType.INTEGER:
             return "ParameterType.INTEGER"
-        case ParameterType.FLOAT:
+    if type_id == ParameterType.FLOAT:
             return "ParameterType.FLOAT"
-        case ParameterType.STRING:
+    if type_id == ParameterType.STRING:
             return "ParameterType.STRING"
-        case ParameterType.ARRAY:
+    if type_id == ParameterType.ARRAY:
             return "ParameterType.ARRAY"
-        case ParameterType.BLOCK:
+    if type_id == ParameterType.BLOCK:
             return "ParameterType.BLOCK"
 
     return "ParameterType.NO_VALUE"
