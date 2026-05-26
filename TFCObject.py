@@ -13,4 +13,4 @@ class TFCObject:
 
     def __init__(self, params: InputParameters) -> None:
         self.name_ = params.getParam("name").getStringValue()
-        self.type_ = params.getParam("type")
+        self.type_ = params.getParam("type").getStringValue()
