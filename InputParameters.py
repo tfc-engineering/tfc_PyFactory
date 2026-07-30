@@ -195,12 +195,26 @@ class InputParameters(Parameter):
         self.tags = {}
         self.params_at_assignment_ = None
 
+    def __iadd__(self, other):
+        if not isinstance(other, InputParameters):
+            raise TypeError("Can only add InputParameters type to InputParameters."
+            f" Type is {type(other)}")
+
+        for param in other.sub_params:
+            param_name = param.name
+            tag_list = other.tags[param_name]
+            self.sub_params += [param]
+            self.tags[param_name] = tag_list
+
+        return self
+
     def addOptionalParam(self, param_name: str, default_value: any, doc_string: str,
                              tags: list = []):
         """Adds an optional parameter."""
 
-        if param_name in self.sub_params:
-            raise Exception(f'ERROR: Parameter "{param_name}" already exists')
+        for param in self.sub_params:
+            if param.name == param_name:
+                raise Exception(f'ERROR: Parameter "{param_name}" already exists')
         self.addParameter(param_name, default_value)
 
         tag_list = []
